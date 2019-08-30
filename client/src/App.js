@@ -21,6 +21,10 @@ const styles = theme => ({
 })
 
 const customers = [
+  // npm init --yes
+  // npm install express nodemon body-parser
+  // index.js
+  // 별도로 구분해서 만들어놓기
   {
     id: 1,
     image: 'https://placeimg.com/64/64/1',
