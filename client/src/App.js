@@ -12,45 +12,33 @@ import { withStyles } from '@material-ui/core/styles';
 const styles = theme => ({
   root: {
     width: '100%',
-    marginTop: theme.spacing.unit * 3,
+    marginTop: theme.spacing(3),
     overflowX: "auto"
   },
   table: {
     minWidth: 1080
   }
-})
+});
 
-const customers = [
-  // npm init --yes
-  // npm install express nodemon body-parser
-  // index.js
-  // 별도로 구분해서 만들어놓기
-  {
-    id: 1,
-    image: 'https://placeimg.com/64/64/1',
-    name: 'John Doe',
-    birthday: 20100909,
-    gender: 'female',
-    job: 'student'
-  },
-  {
-    id: 2,
-    image: 'https://placeimg.com/64/64/2',
-    name: 'Jain March',
-    birthday: 20120303,
-    gender: 'female',
-    job: 'Admin'
-  },
-  {
-    id: 3,
-    image: 'https://placeimg.com/64/64/3',
-    name: 'Aaron',
-    birthday: 20091212,
-    gender: 'male',
-    job: 'programmer'
-  }
-]
+
 class App extends Component {
+
+  state = {
+    customers: ""
+  }
+  
+  componentDidMount(){
+    this.callApi()
+      .then(res => this.setState({customers: res}))
+      .catch(err => console.log(err));
+  }
+  
+  callApi = async () => {
+    const response = await fetch('/api/customers');
+    const body = await response.json();
+    return body;
+  }
+  
   render(){
     const { classes } = this.props;
     return (
@@ -67,7 +55,15 @@ class App extends Component {
             </TableRow>
           </TableHead>
           <TableBody>
-            {customers.map(c => { return ( <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} /> );})}
+            {this.state.customers ? 
+              this.state.customers.map(c => 
+                { 
+                  return ( 
+                    <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender} job={c.job} />
+                  );
+                }
+              ) : ""
+            }
           </TableBody>
         </Table>  
       </Paper>
