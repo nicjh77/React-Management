@@ -1,43 +1,18 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = new express();
-const PORT = process.env.PORT || 5000;
+const port = process.env.SERVER_PORT || 5000;
+const cors = require('cors');
 
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
 
+const customerProcess = require('./apis/customer');
 
-app.get('/api/customers/', (req, res) => {
-    res.send([
-        {
-            'id': 1,
-            'image': 'https://placeimg.com/64/64/1',
-            'name': 'John Doe',
-            'birthday': 20100909,
-            'gender': 'female',
-            'job': 'student'
-          },
-          {
-            'id': 2,
-            'image': 'https://placeimg.com/64/64/2',
-            'name': 'Jain March',
-            'birthday': 20120303,
-            'gender': 'female',
-            'job': 'Admin'
-          },
-          {
-            'id': 3,
-            'image': 'https://placeimg.com/64/64/3',
-            'name': 'Aaron Park',
-            'birthday': 20090605,
-            'gender': 'male',
-            'job': 'doctor'
-          }
-    ]);
-});
+app.use('/api/customers', customerProcess());
 
 
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
 });

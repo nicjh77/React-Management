@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+# info
+/.env
+
+# note
+/doc.txt
+
 # testing
 /coverage
 
