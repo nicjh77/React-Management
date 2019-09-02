@@ -10,6 +10,7 @@ app.use(bodyParser.urlencoded({ extended: true}));
 
 const customerProcess = require('./apis/customer');
 
+app.use('image', express.static('./upload'));
 app.use('/api/customers', customerProcess());
 
 
