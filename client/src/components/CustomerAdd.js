@@ -20,7 +20,7 @@ class CustomerAdd extends React.Component {
         const formData = new FormData();
         formData.append('image', this.state.file);
         formData.append('name', this.state.userName);
-        formData.append('birthday', this.state.firthday);
+        formData.append('birthday', this.state.birthday);
         formData.append('gender', this.state.gender);
         formData.append('job', this.state.job);
         const config = {
@@ -37,6 +37,15 @@ class CustomerAdd extends React.Component {
             .then((response) => {
                 console.log(response.data);
             })
+            this.setState = {
+                file: null,
+                userName: '',
+                birthday: '',
+                gender: '',
+                job: '',
+                fileName: ''
+            }
+            window.location.reload();
     }
 
     handleFileChange = (e) => {

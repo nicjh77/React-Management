@@ -8,6 +8,9 @@
 # info
 /.env
 
+# images
+/upload
+
 # note
 /doc.txt
 
