@@ -31,14 +31,29 @@ const styles = theme => ({
 
 class App extends Component {
 
-  state = {
-    customers: "",
-    completed: 0
+  constructor(props){
+    super(props);
+    this.state={
+      customers:"",
+      completed: 0
+    }
+  }
+
+  stateRefresh = () => {
+    this.setState({
+      customers: "",
+      completed: 0
+    });
+    this.getList();
   }
   
   componentDidMount(){
     this.timer = setInterval(this.progress, 20);
 
+    this.getList();
+  }
+
+  getList = () => {
     axios.get('api/customers').then(res => {
       this.setState({customers: res.data.customers});
     })
@@ -86,7 +101,7 @@ class App extends Component {
             </TableBody>
           </Table>  
         </Paper>
-        <CustomerAdd />
+        <CustomerAdd stateRefresh={this.stateRefresh} />
       </div>
     );
   }
