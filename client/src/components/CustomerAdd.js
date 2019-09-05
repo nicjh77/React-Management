@@ -38,7 +38,8 @@ class CustomerAdd extends React.Component {
                 console.log(response.data)
                 this.props.stateRefresh();
             });
-        this.setState = ({
+        
+        this.setState({
             file: null,
             userName: '',
             birthday: '',
