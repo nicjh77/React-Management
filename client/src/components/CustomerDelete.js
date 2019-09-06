@@ -38,7 +38,7 @@ class CustomerDelete extends React.Component {
 
     render(){
         return(
-            <div>
+            <p>
                 <Button variant="contained" color="secondary" onClick={this.handleClickOpen}>DELETE</Button>
                 <Dialog open={this.state.open} onClose={this.handleClose}>
                     <DialogTitle>
@@ -52,7 +52,7 @@ class CustomerDelete extends React.Component {
                         <Button variant="outlined" color="primary" onClick={this.handleClose}>Close</Button>
                     </DialogActions>
                 </Dialog>
-            </div>
+            </p>
         )
     }
 }

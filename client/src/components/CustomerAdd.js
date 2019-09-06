@@ -13,6 +13,18 @@ const styles = theme => ({
     hidden: {
         display: 'none'
     }
+    // dialog: {
+    //     maxWidth: '100%',
+    //     width : '600px',
+    //     maxHeight: '100%',
+    //     height : '600px'
+    // }
+    // dialog: {
+    //     width: '100%',
+    //     maxWidth: 'none',
+    //     minHeight: '80vh',
+    //     maxHeight: '80vh'
+    //   }
 });
 
 class CustomerAdd extends React.Component {
@@ -101,7 +113,7 @@ class CustomerAdd extends React.Component {
         return(
             <div>
                 <Button variant="contained" color="primary" onClick={this.handleClickOpen}>Add Customer</Button>
-                <Dialog open={this.state.open} onClose={this.handleClose}>
+                <Dialog open={this.state.open} onClose={this.handleClose} className={classes.dialog}>
                     <DialogTitle>Customer Add</DialogTitle>
                     <DialogContent>
                         <input className={classes.hidden} accept="image/*" id="raised-button-file" type="file" file={this.state.file} value={this.state.fileName} onChange={this.handleFileChange} /><br />
